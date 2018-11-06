@@ -31,10 +31,12 @@ public class ContactInformationFormatter implements IContactInformationFormatter
 		try {
 			File file = new File(fileName);
 			Scanner sc = new Scanner(file);
+			
+			while(sc.hasNext()){
 			formatName(sc.nextLine());
-			//this is the end of the name part, next lines can be for the other methods
-			
-			
+			formatPhoneNumber(sc.nextLine());
+			formatEmail(sc.nextLine());
+			}
 			
 			sc.close();
 			//if file is not found will call formatEx to handle it
@@ -45,13 +47,44 @@ public class ContactInformationFormatter implements IContactInformationFormatter
 
 	
 	  @Override public void formatEmail(String email) { 
-	  //Auto-generated method stub
+		  boolean correctFormat = true;
+		  
+		  try {
+			 
+			  char[] emailArray = email.toCharArray();
+				for(int i = 0; i < email.length(); i++){
+					if(Character.isLetter(emailArray[i])){
+						if(Character.isUpperCase(emailArray[i])){
+							correctFormat = false;
+							throw new EmailAddressFormatException(email);
+						}
+						
+					}
+				}
+				  
+			  }catch(EmailAddressFormatException e){
+				  FormatEx.handleEmailFormatException(e);
+			  }
+			if(correctFormat){
+				System.out.println(email);
+			}
 	  
 	  }
 	  
 	  @Override public void formatPhoneNumber(String phoneNumber) { // TODO
-	  //Auto-generated method stub
-	  
+		  String regEx = "^\\((\\d{3})\\)[- ](\\d{3})[- ](\\d{4})$";
+		  
+		  try {
+			if(phoneNumber.matches(regEx) == false){
+				throw new PhoneNumberFormatException(phoneNumber);
+			}else{
+				System.out.println(phoneNumber);
+			}
+			  
+		  }catch(PhoneNumberFormatException e){
+			  FormatEx.handlePhoneNumberFormatException(e);
+		  }
+		
 	  }
 	
 
