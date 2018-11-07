@@ -3,16 +3,22 @@ package la5.cs1120.wmich.edu;
 import java.io.FileNotFoundException;
 
 public class FormatExceptionHandler implements IFormatExceptionHandler {
-
-	@Override
+	
 	/**
 	 * will handle the FileNotFoundException error if it is thrown
+	 * 
+	 * @param e  The exception that was thrown
 	 */
+	@Override
 	public void handleFileNotFoundException(FileNotFoundException e) {
-		// TODO Auto-generated method stub
 		System.out.println("This file was not found.");
 	}
 
+	/**
+	 * will handle the PhoneNumberFormatException error if it is thrown and change it into the correct format
+	 * 
+	 * @param e  The exception that was thrown
+	 */
 	@Override
 	public void handlePhoneNumberFormatException(PhoneNumberFormatException e) {
 		String phoneNum = e.getPhoneNumber();
@@ -100,6 +106,11 @@ public class FormatExceptionHandler implements IFormatExceptionHandler {
 		
 	}
 
+	/**
+	 * will handle the EmailAddressFormatException error if it is thrown and change it into the correct format
+	 * 
+	 * @param e  The exception that was thrown
+	 */
 	@Override
 	public void handleEmailFormatException(EmailAddressFormatException e) {
 		String email = e.getEmailAddress();
@@ -116,14 +127,12 @@ public class FormatExceptionHandler implements IFormatExceptionHandler {
 		
 	}
 
-	@Override
 	/**
-	 * Will get the full name from the exception that was thrown and will format the first name by making 
-	 * the string lowercase, will then make the first character uppercase and add it to
-	 * the finished string. repeat for the last name
+	 * Will handle the NameFormatException if it is thrown and change it into the correct format
 	 * 
 	 * @param e   The exception that was thrown
 	 */
+	@Override
 	public void handleNameFormatException(NameFormatException e) {
 		// TODO Auto-generated method stub
 		String[] fullName = e.getName();

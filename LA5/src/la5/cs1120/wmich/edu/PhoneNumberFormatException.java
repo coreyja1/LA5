@@ -13,9 +13,9 @@ public class PhoneNumberFormatException extends Exception {
 	}
 
 	/**
-	 * basic getter for the full name that caused the exception to be thrown
+	 * basic getter for the phone number that caused the exception to be thrown
 	 * 
-	 * @return name the name that caused the exception
+	 * @return name the number that caused the exception
 	 */
 	public String getPhoneNumber() {
 		return this.phoneNum;

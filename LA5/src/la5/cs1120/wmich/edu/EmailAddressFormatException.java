@@ -13,9 +13,9 @@ public class EmailAddressFormatException extends Exception {
 	}
 
 	/**
-	 * basic getter for the full name that caused the exception to be thrown
+	 * basic getter for the email address that caused the exception to be thrown
 	 *
-	 * @return name the name that caused the exception
+	 * @return email the email address that caused the exception
 	 */
 	public String getEmailAddress() {
 		return this.email;

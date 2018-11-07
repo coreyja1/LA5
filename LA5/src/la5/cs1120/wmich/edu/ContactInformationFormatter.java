@@ -9,23 +9,23 @@ public class ContactInformationFormatter implements IContactInformationFormatter
 	//the exception handler class that will be used
 	FormatExceptionHandler FormatEx = new FormatExceptionHandler();
 	
-	@Override
 	/**
 	 * for each string in the input array will call formatContactInformation using each string as a parameter
 	 * @param filePaths   The String array of filenames
 	 */
+	@Override
 	public void readContactInformation(String[] filePaths) {
 		for (int i = 0; i < filePaths.length; i++) {
 			formatContactInformation(filePaths[i]);
 		}
 	}
-
-	@Override
+	
 	/**
-	 * creates and reads a file from the input and calls methods for each line to check the formatting
+	 * creates and reads a file from the input and calls methods for each line to check the formatting,
 	 * will throw FileNotFoundException if the file does not exist
 	 * @param fileName   the File name passed by readContactInformation
 	 */
+	@Override
 	public void formatContactInformation(String fileName) {
 		// TODO Auto-generated method stub
 		try {
@@ -41,11 +41,15 @@ public class ContactInformationFormatter implements IContactInformationFormatter
 			sc.close();
 			//if file is not found will call formatEx to handle it
 		} catch (FileNotFoundException e) {
+			System.out.println(fileName);
 			FormatEx.handleFileNotFoundException(e);
 		}
 	}
 
-	
+	/**
+	 * This method takes a line from the input file and checks to see if it fits the correct email format
+	 * @param email     The email name from the file
+	 */
 	  @Override public void formatEmail(String email) { 
 		  boolean correctFormat = true;
 		  
@@ -70,6 +74,10 @@ public class ContactInformationFormatter implements IContactInformationFormatter
 			}
 	  
 	  }
+		/**
+		 * This method takes a line from the input file and checks to see if it fits the correct phone number format
+		 * @param phoneNumber     The phone number from the file
+		 */
 	  
 	  @Override public void formatPhoneNumber(String phoneNumber) { // TODO
 		  String regEx = "^\\((\\d{3})\\)[- ](\\d{3})[- ](\\d{4})$";
@@ -87,12 +95,11 @@ public class ContactInformationFormatter implements IContactInformationFormatter
 		
 	  }
 	
-
+		/**
+		 * This method takes a line from the input file and checks to see if it fits the correct name format
+		 * @param name     The name from the file
+		 */
 	@Override
-	/**
-	 * This method takes a line from the input file and checks to see if it fits the correct name format
-	 * @param name     The name from the file
-	 */
 	public void formatName(String name) {
 		// TODO Auto-generated method stub
 		try {
@@ -120,7 +127,6 @@ public class ContactInformationFormatter implements IContactInformationFormatter
 	}
 		//If nameFormatException was thrown, will handle it with formatEx
 		catch(NameFormatException e) {
-		System.out.println("ERRRRRRRROR");
 		FormatEx.handleNameFormatException(e);
 	}
 		
